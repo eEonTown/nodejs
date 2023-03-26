@@ -11,6 +11,9 @@ const home = require("./src/routes/home");
 app.set("views", "./src/views");
 app.set("view engine", "ejs");
 
+// 정적 경로 지정
+app.use(express.static(`${__dirname}/src/public`));
+
 // use : 미들웨어 등록 구문
 app.use("/", home);
 
