@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--경로를 아래와 같이 적는이유는 app.js에서 정적경로를 정했기 때문에 js폴더에 접근하면 자동적으로 static폴더로 인식함-->
-    <script src="/js/home/login.js"></script>
+    <script src="/js/home/login.js" defer></script>
     <title>Document</title>
 </head>
 <body>
-    <input type="text" placeholder="아이디"><br>
-    <input type="text" placeholder="비밀번호">
+    <input id="id" type="text" placeholder="아이디"><br>
+    <input id="psword" type="text" placeholder="비밀번호">
     <button>로그인</button>
 </body>
 </html>
