@@ -1,10 +1,6 @@
 "use strict";
 
-// 임의 계정정보
-const users = {
-    id : ["devadmin", "devadmin2", "devadmin3"],
-    pwd : ["1111", "2222", "3333"]
-};
+const UserStorage = require("../../models/UserStorage");
 
 const output = {
     home : (req, res) => {
@@ -20,6 +16,10 @@ const process = {
         const id = req.body.id,
              pwd = req.body.pwd;
     
+        const users = UserStorage.getUsers("id", "pwd");
+
+        const response = {};
+
         // users.id 배열에 사용자가 입력한 id가 있으면 true 없으면 false반환
         if(users.id.includes(id)) {
             // true반환 후 조건문 실행하면 users.id에 사용자가 입력한 id가 있는 순번을 idx에 할당함
@@ -27,16 +27,15 @@ const process = {
 
             // users.pwd의 idx순번에 사용자가 입력한 pwd가 맞는지 확인 함
             if(users.pwd[idx] === pwd){
-                return res.json({
-                    success : true,
-                });
+                response.success = true;
+                return res.json(response);
             }
         }
 
-        return res.json({
-            success : false,
-            msg : "로그인에 실패 했습니다."
-        })
+        response.success = false;
+        response.msg = "로그인에 실패 했습니다.";
+        
+        return res.json(response);
     }
 };
 
